@@ -1,0 +1,36 @@
+# Меню піцерії
+menu = {
+    "Margherita": 8.5,
+    "Pepperoni": 10.0,
+    "BBQ Chicken": 12.0,
+    "Hawaiian": 11.0,
+}
+
+
+def add_pizza(name, price):
+    menu[name] = price
+    print(f"Піцу {name} додано/оновлено з ціною {price}.")
+
+def remove_pizza(name):
+    if name in menu:
+        del menu[name]
+        print(f"Піцу {name} видалено з меню.")
+    else:
+        print(f"Піци {name} немає в меню.")
+
+
+def calculate_order(pizzas):
+    total = 0
+    for pizza in pizzas:
+        if pizza in menu:
+            total += menu[pizza]
+        else:
+            print(f"Піци {pizza} немає в меню.")
+    return total
+
+
+add_pizza("Margherita", 8.5)
+remove_pizza("Hawaiian")
+order = ["Pepperoni", "Margherita", "BBQ Chicken"]
+print(f"Загальна вартість замовлення: {calculate_order(order)}")
+
