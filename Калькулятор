@@ -1,0 +1,31 @@
+num_1 = int(input('Введіть число_1: '))
+action = input('Введіть математичну дію (+, -, *, /, //, %, **): ')
+num_2 = int(input('Введіть число_2: '))
+
+if action == '+':
+    print(f'Результат: {num_1 + num_2}')
+elif action == '-':
+    print(f'Результат: {num_1 - num_2}')
+elif action == '*':
+    print(f'Результат: {num_1 * num_2}')
+elif action == '/':
+
+
+    if num_2 != 0:
+        print(f'Результат: {num_1 / num_2}')
+    else:
+        print('Помилка: ділення на нуль!')
+elif action == '//':
+    if num_2 != 0:
+        print(f'Результат: {num_1 // num_2}')
+    else:
+        print('Помилка: ділення на нуль!')
+elif action == '%':
+    if num_2 != 0:
+        print(f'Результат: {num_1 % num_2}')
+    else:
+        print('Помилка: ділення на нуль!')
+elif action == '**':
+    print(f'Результат: {num_1 ** num_2}')
+else:
+    print('Помилка: така математична дія не підтримується!')
