@@ -1,0 +1,24 @@
+print("     *    ")
+print("    * *   ")
+print("   *   *  ")
+print("  *     * ")
+print(" *       *")
+print("***********")
+
+
+print("BBBBBB ")
+print("B     B")
+print("B     B")
+print("BBBBBB ")
+print("B     B")
+print("B     B")
+print("BBBBBB ")
+
+
+print("DDDDD    VV     VV    VV     VV")
+print("D    D    VV   VV      VV   VV ")
+print("D    D     VV VV        VV VV  ")
+print("D    D      VVV          VVV   ")
+print("DDDDD        V            V    ")
+
+
