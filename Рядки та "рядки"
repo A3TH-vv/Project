@@ -1,0 +1,29 @@
+row1 = input("Введіть рядок_1: ")
+row2 = input("Введіть рядок_2: ")
+row3 = input("Введіть рядок_3: ")
+
+
+result = row1 + row2 + row3
+print("Результат (сума рядків):", result)
+
+
+
+row1 = input("Введіть рядок_1: ")
+row2 = input("Введіть рядок_2: ")
+row3 = input("Введіть рядок_3: ")
+
+
+result = row1.upper() +  row2.lower() + row3.upper()
+print("Результат :", result)
+
+
+row = input("Введіть рядок: ")
+
+
+length = len(row)
+if length % 2 == 0:
+    middle = row[length // 2 - 1:length // 2 + 1]
+else:
+    middle = row[length // 2]
+
+print("Середина рядка:", middle)
