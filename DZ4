@@ -1,0 +1,29 @@
+
+input_str = input("Введіть рядок довжиною від 5 до 15 символів: ")
+
+if 5 <= len(input_str) <= 15:
+    mid = len(input_str) // 2
+    first_half = input_str[:mid]
+    second_half = input_str[mid:]
+    second_half = second_half[:-3] + second_half[-3:].upper()
+    result_elementary = second_half + first_half
+    print("Elementary:", result_elementary)
+else:
+    print("Рядок повинен бути довжиною від 5 до 15 символів!")
+
+
+
+
+input_str = input("Введіть рядок довжиною не більше 10 символів: ")
+
+if len(input_str) <= 10:
+    if len(input_str) > 3:
+        last_three = input_str[-3:].lower()
+        main_part = input_str[:-3]
+        mid = len(main_part) // 2
+        result_intermediate = main_part[:mid] + last_three + main_part[mid:]
+        print("Intermediate:", result_intermediate)
+    else:
+        print("Intermediate:", input_str.lower())
+else:
+    print("Рядок повинен бути довжиною не більше 10 символів!")
