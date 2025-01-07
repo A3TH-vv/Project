@@ -30,7 +30,7 @@ print("# " * size3)
 
 for i in range(size3 - 2):
     print("#", end=" ")
-    print("  " * (size3 - 2), end="")  # додаємо два пробіли для ширини
+    print("  " * (size3 - 2), end="") 
     print("#")
 
 
