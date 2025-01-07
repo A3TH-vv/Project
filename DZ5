@@ -1,1 +1,39 @@
 
+size1 = int(input("Введіть розмір квадрату: "))
+print("")
+for i in range(size1):
+    if i == 0 or i == size1 - 1:
+        print("# " * size1)
+    else:
+
+        print("#" + " " * (2 * size1 - 3) + "#")
+
+print()
+
+
+size2 = int(input("Введіть розмір квадрату: "))
+for i in range(size2):
+    for j in range(size2):
+        if i == 0 or i == size2 - 1 or j == 0 or j == size2 - 1:
+            print("# ", end="")
+        else:
+            print("  ", end="")
+    print("")
+
+print()
+
+
+size3 = int(input("Введіть розмір квадрату: "))
+
+print("# " * size3)
+
+
+for i in range(size3 - 2):
+    print("#", end=" ")
+    print("  " * (size3 - 2), end="")  # додаємо два пробіли для ширини
+    print("#")
+
+
+if size3 > 1:
+    print("# " * size3)
+
