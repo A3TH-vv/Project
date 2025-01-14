@@ -1,0 +1,22 @@
+string = "І що сало Ласощі"
+normalized_string = string.lower().replace(" ", "")
+print(normalized_string == normalized_string[::-1])
+
+
+string = input("Введіть рядок: ")
+string = string.lower().replace(" ", "")
+is_palindrome = True
+left, right = 0, len(string) - 1
+
+while left < right:
+    if string[left] != string[right]:
+        is_palindrome = False
+        break
+    left += 1
+    right -= 1
+
+print(is_palindrome)
+
+string = input("Введіть рядок: ")
+normalized_string = ''.join(char.lower() for char in string if char.isalnum())
+print(normalized_string == normalized_string[::-1])
