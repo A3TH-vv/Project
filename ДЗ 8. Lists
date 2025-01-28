@@ -1,0 +1,24 @@
+import random
+
+
+numbers = [random.randint(-10, 50) for _ in range(26)]
+
+
+print("Список:", numbers)
+print("Елементи з парними індексами:", [numbers[i] for i in range(len(numbers)) if i % 2 == 0])
+
+
+sum_all = sum(numbers)
+print("Сума всіх елементів списку:", sum_all)
+
+
+sum_even = sum(num for num in numbers if num % 2 == 0)
+sum_odd = sum(num for num in numbers if num % 2 != 0)
+print("Сума парних елементів:", sum_even)
+print("Сума непарних елементів:", sum_odd)
+
+
+max_value = max(numbers)
+max_index = numbers.index(max_value)
+print("Найбільший елемент списку:", max_value)
+print("Індекс найбільшого елемента:", max_index)
