@@ -1,0 +1,32 @@
+import random
+
+
+def custom_sort(lst, chunk_size=10):
+    sorted_list = []
+
+    for i in range(0, len(lst), chunk_size):
+        chunk = lst[i:i + chunk_size]
+
+        if (i // chunk_size) % 2 == 0:
+            sorted_list.extend(sorted(chunk))
+            sorted_list.append(": За зростанням")
+        else:
+            sorted_list.extend(sorted(chunk, reverse=True))
+            sorted_list.append(": За спаданням")
+
+    return sorted_list
+
+
+
+random_list = [random.randint(1, 100) for _ in range(40)]
+print("Початковий список:", random_list)
+
+
+sorted_list = custom_sort(random_list)
+
+
+formatted_output = []
+for i in range(0, len(sorted_list), 11):
+    formatted_output.append(" ".join(map(str, sorted_list[i:i + 11])))
+
+print("\n".join(formatted_output))
