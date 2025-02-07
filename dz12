@@ -1,0 +1,17 @@
+import random
+
+def sort_bubble(lister):
+    for i in range(len(lister)):
+        check = False
+        for index in range(len(lister) - 1 - i):
+            if lister[index] > lister[index + 1]:
+                lister[index], lister[index + 1] = lister[index + 1], lister[index]  # SWAP
+                check = True
+        if not check:
+            break
+    return lister
+
+list_1 = [random.randint(0, 100) for i in range(40)]  
+      
+print("До сортування:", list_1)
+print("Після сортування:", sort_bubble(list_1))
