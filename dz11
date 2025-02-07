@@ -1,0 +1,21 @@
+def contains_substring(string1, string2):
+    return string1 in string2
+
+
+def count_letters(string):
+    return sum(1 for char in string if char.isalpha())
+
+
+def count_vowels(string):
+    vowels = set("аеєиіїоуюяАЕЄИІЇОУЮЯaeiouAEIOU")
+    return sum(1 for char in string if char in vowels)
+
+
+
+string1 = "антон"
+string2 = "антонімом"
+print(f"'{string1}' входить у '{string2}':", contains_substring(string1, string2))
+
+string3 = "алгоритм #34563 має за основу Двійкове Дерево."
+print("Кількість літер у рядку:", count_letters(string3))
+print("Кількість голосних у рядку:", count_vowels(string3))
