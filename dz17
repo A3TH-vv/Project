@@ -1,0 +1,17 @@
+from random import randint
+
+1
+list_1 = [randint(1,10) for i in range(10)]
+print(list_1)
+print(len(set(list_1)))
+2
+list_1 = [randint(1,10) for i in range(10)]
+list_2 = [randint(1,10) for i in range(10)]
+print(list_1)
+print(list_2)
+print(len(set(list_1) - set(list_2)))
+3
+list_1 = [randint(1,10) for i in range(10)]
+list_2 = [randint(1,10) for i in range(10)]
+
+print(sorted(set(list_1) & set(list_2)))
