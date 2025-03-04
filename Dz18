@@ -1,0 +1,22 @@
+capitals = {
+    'Kyiv' : 'Ukraine',
+'Paris' : 'France',
+'Berlin' : 'Deuchland',
+'Vien' : 'Östereich',
+'Rome' : 'Italy',
+'Warsaw' : 'Poland'
+}
+
+answer = input('Введіть назву столиці: ').capitalize()
+answer = ""
+
+while answer != 'Stop':
+
+    answer = input('Введіть назву столиці(для виходу введіть stop): ').capitalize()
+
+    if answer in capitals:
+        print(f'Так це столиця країни: {capitals[answer]}')
+    else:
+        print(f'Так це столиця країни ніякої.')
+
+    print(capitals.get(answer, 'Такої столиці не знайдено.'))
