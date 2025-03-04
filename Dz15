@@ -1,0 +1,42 @@
+from os import mkdir, listdir
+from random import randint
+from shutil import rmtree
+from posixpath import exists
+
+
+def gen_files(count_f):
+    if not exists('folder_for_task_15'):
+        mkdir('folder_for_task_15')
+    else:
+        rmtree('folder_for_task_15')
+        mkdir('folder_for_task_15')
+
+    if exists('folder_for_task_15'):
+        rmtree('folder_for_task_15')
+
+    mkdir('folder_for_task_15')
+
+    for i in range(count_f):
+        list_nums = [str(randint(1,10)) for j in range(randint(5,10))]
+
+        with open(f'folder_for_task_15/file_{i}.txt', 'w') as fl:
+            fl.write(' '.join(list_nums))
+
+def same_sercher(list_addresses):
+    set_result = set()
+
+    for address in list_addresses:
+        with open(address, 'r') as fl:
+            if not set_result:
+                set_result = set(fl.read().split(' '))
+            else:
+                set_result &= set(fl.read().split(' '))
+
+    return set_result
+
+
+gen_files(3)
+
+list_a = [f'folder_for_task_15/{name}' for name in listdir('folder_for_task_15')]
+print(same_sercher(list_a))
+print(list_a)
