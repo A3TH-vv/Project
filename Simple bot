@@ -1,0 +1,59 @@
+import telebot
+from telebot.apihelper import send_message, set_message_reaction
+import random
+
+bot_token = 'Токен бота'
+
+
+bot = telebot.TeleBot(bot_token)
+
+# responses = [
+#     "Привіт! Як справи?",
+#     "Гарний день для чату, правда?",
+#     "Що цікавого розкажеш?",
+#     "Я тут, щоб відповідати на твої повідомлення!",
+#     "Цікаво, а ти любиш жарти? 😃"
+# ]
+#Відповіді до другого завдання
+
+@bot.message_handler(commands=['стан_справ', 'жарт', 'привітання', 'допомога', 'прощання'])
+def get_commands(message):
+    if message.text == '/привітання':
+        bot.send_message(message.chat.id, "Привіт! Як справи? 😊")
+    elif  message.text == '/стан_справ':
+        bot.send_message(message.chat.id, "Як настрій? Чим займаєшся?")
+    elif message.text == '/жарт':
+        bot.send_message(message.chat.id, "Чому томати ніколи не виграють у перегонах? Бо вони завжди перетворюються на кетчуп! 🍅😆")
+    elif message.text == '/допомога':
+        bot.send_message(message.chat.id, "Чим можу допомогти? Питай, не соромся!")
+    elif message.text == '/прощання':
+        bot.send_message(message.chat.id, "Бувай! Гарного дня і безбагового коду! 😄🚀")
+
+
+# @bot.message_handler(content_types='text')
+# def handle_text(message):
+#     response = random.choice(responses)
+#     bot.send_message(message.chat.id, response)
+
+
+RESPONSES_FILE = 'responses.txt'
+
+
+@bot.message_handler(content_types='text')
+def handle_text(message):
+    with open(RESPONSES_FILE, 'r', encoding='utf-8') as file:
+        responses = [line.strip() for line in file if line.strip()]
+
+    response = random.choice(responses)
+    bot.send_message(message.chat.id, response)
+
+
+
+
+
+
+
+
+
+
+bot.polling()
