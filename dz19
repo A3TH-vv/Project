@@ -1,0 +1,23 @@
+def invert_dictionary(eng_lat_dict):
+    lat_eng_dict = {}
+
+    for eng_word, lat_words in eng_lat_dict.items():
+        for lat_word in lat_words:
+            if lat_word in lat_eng_dict:
+                lat_eng_dict[lat_word].append(eng_word)
+            else:
+                lat_eng_dict[lat_word] = [eng_word]
+
+    return lat_eng_dict
+
+
+
+eng_lat_dict = {
+    "apple": ['malum', 'omum', 'popula'],
+    "fruit": ['baca', 'bacca', 'popum'],
+    "punishment": ['malum', 'multa']
+}
+
+
+lat_eng_dict = invert_dictionary(eng_lat_dict)
+print(lat_eng_dict)
