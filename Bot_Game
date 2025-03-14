@@ -1,0 +1,82 @@
+import telebot
+import random
+
+bot_token = "Токен_бота"
+bot = telebot.TeleBot(bot_token)
+
+user_data = {}
+
+
+def generate_example():
+    num1, num2 = random.randint(1, 10), random.randint(1, 10)
+    operation = random.choice(["+", "-"])
+    question = f"{num1} {operation} {num2}"
+    answer = eval(question)
+    return question, answer
+
+
+@bot.message_handler(commands=['start'])
+def start_game(message):
+    if message.text == '/start':
+        chat_id = message.chat.id
+        user_data[chat_id] = {'correct': 0, 'wrong': 0, 'total': 0, 'current_q': None, 'current_a': None}
+        bot.send_message(chat_id, "Гра почалася! Відповідайте на математичні приклади.")
+        send_question(chat_id)
+
+
+def send_question(chat_id):
+    question, answer = generate_example()
+    user_data[chat_id]['current_q'] = question
+    user_data[chat_id]['current_a'] = answer
+    bot.send_message(chat_id, f"Скільки буде {question}?")
+
+
+@bot.message_handler(commands=['stop'])
+def stop_game(message):
+    chat_id = message.chat.id
+    if chat_id not in user_data:
+        bot.send_message(chat_id, "Гра ще не почалася. Використовуйте /start.")
+        return
+
+    correct = user_data[chat_id]['correct']
+    wrong = user_data[chat_id]['wrong']
+    total = user_data[chat_id]['total']
+
+    if correct > wrong:
+        sticker = "CAACAgIAAxkBAANaZ9RTMedxMdqLxiDoA9HBxbQPooYAAm4nAAISg7hLAi92X7SUe_Q2BA"
+    elif wrong > correct:
+        sticker = "CAACAgIAAxkBAANeZ9RTdNYlmxpSY1z4UsNeQ7D5EzMAAj0xAAI4jLBLLHw500QTuCE2BA"
+    else:
+        sticker = "CAACAgIAAxkBAANcZ9RTbCBugRhW_pntCHWPpTPAnFwAAs8tAAIoDbFLQ0YD9FiitEM2BA"
+
+    bot.send_sticker(chat_id, sticker)
+    bot.send_message(chat_id, f"Гра завершена!\nПравильних: {correct}\nНеправильних: {wrong}\nВсього питань: {total}")
+    del user_data[chat_id]
+
+
+@bot.message_handler(func=lambda message: message.chat.id in user_data)
+def check_answer(message):
+
+    chat_id = message.chat.id
+    if user_data[chat_id]['current_q'] is None:
+        bot.send_message(chat_id, "Немає активного питання. Використовуйте /start.")
+        return
+
+    try:
+        user_answer = int(message.text)
+        correct_answer = user_data[chat_id]['current_a']
+        if user_answer == correct_answer:
+            user_data[chat_id]['correct'] += 1
+            bot.send_message(chat_id, "Правильно! ✅")
+        else:
+            user_data[chat_id]['wrong'] += 1
+            bot.send_message(chat_id, f"Неправильно. Правильна відповідь: {correct_answer} ❌")
+
+        user_data[chat_id]['total'] += 1
+        send_question(chat_id)
+
+    except ValueError:
+        bot.send_message(chat_id, "Будь ласка, введіть число.")
+
+
+bot.polling()
