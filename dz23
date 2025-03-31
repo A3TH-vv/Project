@@ -1,0 +1,43 @@
+import telebot
+
+from telebot import types
+
+from telebot.apihelper import send_message, send_photo
+from posixpath import exists
+
+from os import mkdir, listdir
+
+from random import choice, randint,shuffle
+
+from telebot.util import quick_markup
+
+bot_token = '7979563241:'
+bot = telebot.TeleBot(bot_token)
+
+
+def root_search(mes_words, key_roots):
+    for root in key_roots:
+        for word in mes_words:
+            if root in word:
+                return True
+    return False
+
+def reader_and_sender(id_chat, address):
+    rand_name_ph = choice(listdir(address))
+
+    with open(f'{address}/{rand_name_ph}', 'rb') as ph:
+        bot.send_photo(id_chat, ph.read())
+
+@bot.message_handler(content_types='text')
+def get_text(message):
+
+    message_words = message.text.lower().split()
+
+    if root_search(message_words, ['зображен', "картин", "малюнк" ]):
+        if root_search(message_words, ['кав', "аромат"]):
+            reader_and_sender(message.chat.id, 'photos/кава')
+        elif root_search(message_words, ['природ', "ландшафт"]):
+            reader_and_sender(message.chat.id, 'photos/море')
+        elif root_search(message_words, ['мор', "берег"]):
+            reader_and_sender(message.chat.id, 'photos/море')
+bot.polling()
